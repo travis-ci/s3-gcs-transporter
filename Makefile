@@ -3,7 +3,7 @@
 COMMAND        = bundle exec ./s3_to_gcs.rb
 S3_REGION      = us-east-1
 S3_CSV         = creds.csv
-GCS_REGION     = us-central-1a
+GCS_REGION     = us
 GCS_JSON       = creds.json
 GCS_BUCKET     = travis-ci-language-archives
 ARGS           = --s3-region=$(S3_REGION) \
