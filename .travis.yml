@@ -9,5 +9,12 @@ env:
   - TARGET=php
   - TARGET=perl
 
+before_script:
+  - openssl aes-256-cbc -K $encrypted_709b205d8f9e_key -iv $encrypted_709b205d8f9e_iv -in creds.tar.enc -out creds.tar -d
+  - tar xf creds.tar
+
 script:
   - make ${TARGET}
+
+after_script:
+  - rm -f creds.*
