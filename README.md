@@ -8,15 +8,14 @@ before uploading to GCS.
 ## Usage
 
 ```
-$ ruby s3_to_gcs.rb \
+$ ruby sync_script.rb \
   --s3-region=us-east-1 \
-  --s3-creds-csv=/path/to/accessKeys.csv \
-  --s3-bucket=s3_bucket \
-  --s3-prefix=s3/prefix/ \
-  --gcs-region=us-central-1a \
-  --gcs-creds-json=/path/to/creds.json \
-  --gcs-project-id=gcs_project_id \
-  --gcs-bucket=gcs_bucket \
-  --gcs-prefix=gcs/prefix/ \
-  --log-level=debug
+  --gcs-region=us-central1 \
+  --gcs-creds-json=/path/to/gcs-creds.json \
+  --gcs-project-id=your-gcp-project-id \
+  --s3-bucket=your-s3-bucket-name \
+  --s3-prefix=your/s3/prefix \
+  --gcs-bucket=your-gcs-bucket-name \
+  --gcs-prefix=your/gcs/prefix \
+  --log-level=info
 ```

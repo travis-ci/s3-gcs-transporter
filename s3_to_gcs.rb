@@ -2,7 +2,7 @@
 
 require 'aws-sdk'
 require 'google/cloud/storage'
-require 'smarter_csv'
+#require 'smarter_csv'
 require 'optparse'
 require 'pathname'
 require 'fileutils'
@@ -50,10 +50,6 @@ parser = OptionParser.new do |opts|
     options[:s3_region] = s3_region
   end
 
-  opts.on("--s3-creds-csv=MANDATORY", "csv file containing S3 credentials, as downloaded from AWS") do |csv_file|
-    options[:s3_creds_csv] = csv_file
-  end
-
   opts.on("--gcs-region=MANDATORY", "GCS region") do |gcs_region|
     options[:gcs_region] = gcs_region
   end
@@ -97,16 +93,8 @@ logger.debug options.inspect
 
 def s3
   @s3 ||= Aws::S3::Resource.new(
-    region: options[:s3_region] || 'us-east-1',
-    credentials: Aws::Credentials.new(s3_creds[:access_key_id], s3_creds[:secret_access_key])
+    region: options[:s3_region] || 'us-east-1'
   )
-end
-
-def s3_creds
-  return @s3_creds if @s3_creds
-
-  data = SmarterCSV.process(options[:s3_creds_csv])
-  @s3_creds = data.first
 end
 
 def gcs
